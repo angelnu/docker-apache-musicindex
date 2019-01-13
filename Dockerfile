@@ -1,4 +1,4 @@
-ARG BASE=alpine
+ARG BASE=ubuntu
 FROM $BASE
 
 ARG arch=none
@@ -6,19 +6,17 @@ ENV ARCH=$arch
 
 COPY qemu/qemu-$ARCH-static* /usr/bin/
 
-RUN apk add --no-cache apache2-webdav apache2-utils \
-  # Create a subdir for webdav lockdb file.
-  && mkdir -p /var/lib/dav \
-  && chown apache:apache /var/lib/dav \
-  && chmod 755 /var/lib/dav \
-  # Create a subdir to hold the daemon's pid:
-  && mkdir -p /run/apache2
+RUN apt update \
+    && apt-get install -y apache2 libapache2-mod-musicindex \
+    && apt-get -y clean all \
+    && mkdir -p /music /cache \
+    && ln -sf ../mods-available/musicindex.load /etc/apache2/mods-enabled/
 
-ADD dav.conf /etc/apache2/conf.d/
+
+ADD *.conf /etc/apache2/conf-enabled/
 ADD entrypoint.sh /
-RUN chmod 750 /entrypoint.sh
 
-VOLUME /media
+VOLUME /music /cache
 EXPOSE 80 443
 
 CMD ["/entrypoint.sh"]

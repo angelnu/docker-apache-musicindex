@@ -5,7 +5,5 @@ services:
     ports:
       - "80:80"
     volumes:
-      - "/mnt:/media"
-    environment:
-      USERNAME: user
-      PASSWORD: passwd
+      - "/media:/music"
+      - "/tmp:/cache"
