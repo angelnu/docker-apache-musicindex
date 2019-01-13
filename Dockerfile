@@ -10,7 +10,9 @@ RUN apt update \
     && apt-get install -y apache2 libapache2-mod-musicindex \
     && apt-get -y clean all \
     && mkdir -p /music /cache \
-    && ln -sf ../mods-available/musicindex.load /etc/apache2/mods-enabled/
+    && ln -sf ../mods-available/musicindex.load /etc/apache2/mods-enabled/ \
+    && rm -rf /var/www/html \
+    && ln -s /music /var/www/html
 
 
 ADD *.conf /etc/apache2/conf-enabled/
