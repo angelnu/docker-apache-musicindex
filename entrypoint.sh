@@ -7,4 +7,5 @@ export APACHE_LOG_DIR=/tmp
 export APACHE_PID_FILE=/tmp/apache.pid
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
+chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP /cache
 exec apache2 -X
