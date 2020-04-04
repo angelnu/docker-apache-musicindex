@@ -7,10 +7,11 @@ ENV ARCH=$arch
 COPY qemu/qemu-$ARCH-static* /usr/bin/
 
 RUN apt update \
-    && apt-get install -y apache2 libapache2-mod-musicindex \
+    && apt-get install -y apache2 ssl-cert libapache2-mod-musicindex \
     && apt-get -y clean all \
     && mkdir -p /music /cache \
-    && ln -sf ../mods-available/musicindex.load /etc/apache2/mods-enabled/ \
+    && a2enmod musicindex \
+    && a2ensite default-ssl \
     && rm -rf /var/www/html \
     && ln -s /music /var/www/html
 
