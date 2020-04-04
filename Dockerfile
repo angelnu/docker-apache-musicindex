@@ -11,7 +11,7 @@ RUN apt update \
     && apt-get -y clean all \
     && mkdir -p /music /cache \
     && a2enmod musicindex \
-    && a2ensite default-ssl \
+    && a2ensite ssl default-ssl \
     && rm -rf /var/www/html \
     && ln -s /music /var/www/html
 
