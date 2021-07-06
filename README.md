@@ -1,5 +1,10 @@
 # docker-apache-musicindex
 
+Moved to K8s-at-home:
+- container sources: https://github.com/k8s-at-home/container-images/tree/main/apps/apache-musicindex
+- container repository: ghcr.io/k8s-at-home/apache-musicindex
+- Helm chart: https://github.com/k8s-at-home/charts/tree/master/charts/stable/apache-musicindex
+
 -	[`latest` (*Dockerfile*)](https://github.com/angelnu/docker-apache-musicindex/blob/master/Dockerfile)
 
 [![](https://badge.imagelayers.io/angelnu/apache-musicindex:latest.svg)](https://imagelayers.io/?images=angelnu/apache-musicindex:latest 'Get your own badge on imagelayers.io')
